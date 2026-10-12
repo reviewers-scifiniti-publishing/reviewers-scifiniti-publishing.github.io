@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex">
+<title>Reviewer reply | Scifiniti Publishing</title>
+<link rel="preconnect" href="https://script.google.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#003462;--red:#FC3441;--ink:#1F2A37;--muted:#4A5563;--line:#DCE4EE;--field:#7B90A8;--tint:#EEF3F9;--bg:#F5F8FC;--err:#B3261E;
+    --serif:"Newsreader",Georgia,"Times New Roman",serif;--sans:Arial,Helvetica,sans-serif}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans);-webkit-text-size-adjust:100%}
+  .wrap{max-width:600px;margin:0 auto;padding:16px}
+  .mast{display:flex;gap:14px;align-items:center;padding:14px;background:var(--navy);color:#fff;border-bottom:4px solid var(--red);border-radius:10px 10px 0 0}
+  .coverbox{flex:none;width:80px;aspect-ratio:1240/1754;border-radius:4px;background:#0E4A80;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+  .cover{display:block;width:100%;height:100%;object-fit:cover}
+  .logo{display:block;width:96px;height:auto;margin:0 0 10px}
+  .kick{margin:0;font-size:13px;color:#C9D6E8}
+  .jn{margin:2px 0 0;font-size:19px;line-height:1.25;font-weight:bold}
+  .card{padding:24px 16px;background:#fff;border:1px solid var(--line);border-top:0;border-radius:0 0 10px 10px}
+  h1{margin:0;font:600 26px/1.2 var(--serif);color:var(--navy)}
+  h1:focus{outline:none}
+  .who{margin:8px 0 0;color:var(--muted)}
+  .link{padding:0;border:0;background:none;color:var(--navy);font:inherit;font-weight:bold;text-decoration:underline;cursor:pointer}
+  .ms{margin:16px 0;padding:14px 16px;background:var(--tint);border-radius:8px}
+  .label{margin:0 0 4px;font-size:13px;color:var(--muted)}
+  .title{margin:0;font:500 18px/1.35 var(--serif);color:var(--ink)}
+  .ref{margin:6px 0 0;font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+  .note{margin:0 0 4px;color:var(--muted)}
+  .note a,.links a{color:var(--navy);font-weight:bold}
+  fieldset{margin:0 0 4px;padding:0;border:0;min-width:0}
+  legend{margin:0 0 8px;padding:0;font-weight:bold}
+  .soft{font-weight:normal;color:var(--muted)}
+  .opt{display:flex;align-items:center;gap:12px;min-height:48px;margin:0 0 8px;padding:10px 14px;border:1px solid var(--field);border-radius:8px;
+    background:#fff;color:var(--ink);font-size:15px;cursor:pointer}
+  .opt input{flex:none;width:20px;height:20px;margin:0;accent-color:var(--navy)}
+  .opt:has(input:checked){padding:9px 13px;border:2px solid var(--navy);background:var(--tint);color:var(--navy);font-weight:bold}
+  .opt:has(input:focus-visible),.seg label:has(input:focus-visible){outline:3px solid var(--red);outline-offset:2px}
+  .opt input:focus-visible,.seg input:focus-visible{outline:none}
+  .later{margin:-2px 0 10px 46px}
+  .later p{margin:0 0 6px;font-size:14px;color:var(--muted)}
+  .seg{display:flex;flex-wrap:wrap;gap:8px}
+  .seg label{position:relative;display:inline-flex;align-items:center;min-height:40px;padding:8px 14px;border:1px solid var(--field);border-radius:999px;background:#fff;font-size:14px;cursor:pointer}
+  .seg input{position:absolute;opacity:0;width:1px;height:1px}
+  .seg label:has(input:checked){border:2px solid var(--navy);padding:7px 13px;background:var(--tint);color:var(--navy);font-weight:bold}
+  .disclose{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin:8px 0 0;padding:0;border:0;background:none;color:var(--navy);font:bold 15px var(--sans);cursor:pointer}
+  .disclose::before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;border:2px solid var(--navy);border-radius:50%;font-size:15px;line-height:1}
+  .disclose[aria-expanded=true]::before{content:"\2212"}
+  .field{margin:16px 0 0}
+  .field label{display:block;margin:0 0 6px;font-weight:bold}
+  .field input,.field textarea{display:block;width:100%;padding:12px;border:1px solid var(--field);border-radius:8px;background:#fff;color:var(--ink);font:16px/1.5 var(--sans)}
+  .field textarea{min-height:96px;resize:vertical}
+  .field [aria-invalid=true]{border:2px solid var(--err)}
+  .hint{margin:6px 0 0;font-size:13px;color:var(--muted)}
+  .go{display:block;width:100%;min-height:52px;margin:24px 0 0;padding:14px 20px;border:0;border-radius:8px;background:var(--navy);color:#fff;font:bold 17px var(--sans);cursor:pointer}
+  .go[disabled]{opacity:.75;cursor:progress}
+  .status{margin:12px 0 0;color:var(--err);font-weight:bold}
+  .switch{margin:16px 0 0;text-align:center;color:var(--muted)}
+  .choices{display:grid;gap:10px;margin:0}
+  .choice{min-height:52px;padding:14px 18px;border:2px solid var(--navy);border-radius:8px;background:#fff;color:var(--navy);font:bold 16px var(--sans);text-align:left;cursor:pointer}
+  .choice.main{background:var(--navy);color:#fff}
+  :focus-visible{outline:3px solid var(--red);outline-offset:2px}
+  .check{display:grid;place-items:center;width:52px;height:52px;margin:0 0 16px;border-radius:50%;background:var(--navy)}
+  .lead{margin:8px 0 0;font-size:16px}
+  h2{margin:28px 0 12px;font-size:16px;color:var(--navy)}
+  .steps{margin:0;padding:0;list-style:none;counter-reset:s}
+  .steps li{position:relative;margin:0 0 14px;padding:0 0 0 40px;counter-increment:s}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:-2px;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;
+    background:var(--tint);color:var(--navy);font-weight:bold;font-size:14px}
+  .tip{margin:4px 0 0;padding:14px 16px;border-left:4px solid var(--navy);background:var(--tint);border-radius:0 8px 8px 0}
+  .links{margin:24px 0 0;display:flex;flex-wrap:wrap;gap:8px 24px}
+  .foot{margin:16px 0 8px;text-align:center;font-size:13px;color:var(--muted)}
+  [hidden]{display:none!important}
+  @media (min-width:640px){
+    .wrap{padding:32px 16px}
+    .mast{gap:24px;padding:20px 28px}
+    .coverbox{width:132px}
+    .logo{width:120px}
+    .jn{font-size:26px}
+    .card{padding:32px}
+    h1{font-size:32px}
+    .title{font-size:20px}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .pop .check{animation:pop .3s cubic-bezier(.2,.8,.2,1) both}
+    @keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="mast">
+    <div class="coverbox"><img class="cover" id="cover" alt="" hidden></div>
+    <div>
+      <img class="logo" src="https://www.scifiniti.com/frontend/img/logo-footer.png" alt="Scifiniti Publishing" width="120" height="34">
+      <p class="kick">Reviewer reply</p>
+      <p class="jn" id="jn">Scifiniti Publishing</p>
+    </div>
+  </header>
+
+  <section class="card" id="form-view" aria-labelledby="h">
+    <h1 id="h">Reply to the invitation</h1>
+    <p class="who" id="who" hidden><span id="who-t"></span> <button type="button" class="link" id="who-change">Change</button></p>
+    <div class="ms">
+      <p class="label">Manuscript</p>
+      <p class="title" id="title">Loading the title…</p>
+      <p class="ref">Ref. No: <span id="ref"></span></p>
+    </div>
+
+    <div id="choose" hidden>
+      <div class="choices">
+        <button type="button" class="choice main" data-go="accept">Accept invitation</button>
+        <button type="button" class="choice" data-go="decline">Decline invitation</button>
+        <button type="button" class="choice" data-go="recommend">Recommend a reviewer</button>
+      </div>
+    </div>
+
+    <form id="f" novalidate hidden>
+      <p class="note" id="accept-note" hidden>The full manuscript comes through our submission system (JAMS), and the review is due within 10–14 days of receiving it. <a id="gl" href="https://www.scifiniti.com/peer-review-process" target="_blank" rel="noopener">Read the reviewer guidelines</a></p>
+
+      <fieldset id="reasons" hidden>
+        <legend>Reason <span class="soft">(optional)</span></legend>
+        <label class="opt"><input type="radio" name="reason" value="expertise"> Outside my expertise</label>
+        <label class="opt"><input type="radio" name="reason" value="time"> No time right now</label>
+        <div class="later" id="later" hidden>
+          <p id="later-l">Ask me again in</p>
+          <div class="seg" role="radiogroup" aria-labelledby="later-l">
+            <label><input type="radio" name="later" value="1"> 1 month</label>
+            <label><input type="radio" name="later" value="3" checked> 3 months</label>
+            <label><input type="radio" name="later" value="6"> 6 months</label>
+          </div>
+        </div>
+        <label class="opt"><input type="radio" name="reason" value="coi"> Conflict of interest with the authors</label>
+        <label class="opt"><input type="radio" name="reason" value="concerns"> Concerns about the manuscript</label>
+        <label class="opt"><input type="radio" name="reason" value="other"> Other</label>
+      </fieldset>
+
+      <div id="rec" hidden>
+        <button type="button" class="disclose" id="rec-toggle" aria-expanded="false" aria-controls="rec-fields">Recommend a reviewer instead</button>
+        <p class="note" id="rec-intro" hidden>Who would be a good reviewer for this manuscript?</p>
+        <div id="rec-fields" hidden>
+          <div class="field"><label for="rn">Reviewer's name</label><input id="rn" autocomplete="off"></div>
+          <div class="field"><label for="re">Reviewer's e-mail</label><input id="re" type="email" inputmode="email" autocomplete="off"></div>
+        </div>
+      </div>
+
+      <div class="field" id="me" hidden>
+        <label for="em">Your e-mail</label>
+        <input id="em" type="email" inputmode="email" autocomplete="email" aria-describedby="emh">
+        <p class="hint" id="emh">So the editor can reply to you.</p>
+      </div>
+
+      <button type="button" class="disclose" id="msg-toggle" aria-expanded="false" aria-controls="msg-field">Add a message for the editor</button>
+      <div class="field" id="msg-field" hidden>
+        <label for="m" id="ml">Message to the editor (optional)</label>
+        <textarea id="m" rows="3" aria-describedby="hint"></textarea>
+        <p class="hint" id="hint">Press Enter to send. Shift + Enter adds a new line.</p>
+      </div>
+
+      <button class="go" id="go" type="submit">Accept invitation</button>
+      <p class="status" id="st" role="alert" hidden></p>
+      <p class="switch" id="sw"></p>
+    </form>
+  </section>
+
+  <section class="card" id="done" hidden aria-labelledby="dh">
+    <div class="check" id="check" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+    </div>
+    <h1 id="dh" tabindex="-1">Thank you</h1>
+    <p class="lead" id="dl"></p>
+    <p class="lead" id="dl2" hidden></p>
+    <div class="ms" id="ms2">
+      <p class="label">Manuscript</p>
+      <p class="title" id="title2"></p>
+      <p class="ref">Ref. No: <span id="ref2"></span></p>
+    </div>
+    <div id="next" hidden>
+      <h2>What happens next</h2>
+      <ol class="steps">
+        <li>The editor will contact you within 2 working days.</li>
+        <li>You will receive the formal invitation from our submission system (JAMS), sent from <strong>no-reply@jams.pub</strong>. Accept it there to open the full manuscript.</li>
+        <li>The review is due within 10–14 days of receiving the full manuscript.</li>
+      </ol>
+      <p class="tip">Add <strong>no-reply@jams.pub</strong> to your contacts so the invitation reaches your inbox and not your spam folder.</p>
+      <h2>In appreciation of your review</h2>
+      <p>A certificate of acknowledgment, and free English editing and graphical enhancement for any future article you publish with Scifiniti.</p>
+    </div>
+    <p class="links"><a id="gl2" href="https://www.scifiniti.com/peer-review-process" hidden>Reviewer guidelines</a><a id="jl" href="https://www.scifiniti.com">Visit Scifiniti Publishing</a></p>
+  </section>
+
+  <p class="foot">Scifiniti Publishing, Abu Dhabi, UAE</p>
+</main>
+<script>
+(function () {
+  var API = 'https://script.google.com/macros/s/AKfycbzCT7R5CxJ_b5TCXCtLpb8NDSOpRH8FZvQUSXs1IZM3bRxLJJwTfg5QcrZmirETfFjE/exec';
+  var SITE = /^https:\/\/www\.scifiniti\.com\//;
+  var ALIAS = { accept: 'accept', yes: 'accept', decline: 'decline', nmf: 'decline', recommend: 'recommend', colleague: 'recommend', msg: 'msg' };
+  var EMAIL_RE = /^[^\s@<>"',;]+@[^\s@<>"',;]+\.[^\s@<>"',;]{2,}$/;
+  var REF_RE = /^[A-Za-z0-9_&.\-]{3,80}$/;
+  var V = {
+    choose: { h: 'Reply to the invitation' },
+    accept: { h: 'Accept the invitation', btn: 'Accept invitation', ml: 'Message to the editor (optional)', ph: 'For example, when you can start' },
+    decline: { h: 'Decline the invitation', btn: 'Decline invitation', ml: 'Message to the editor (optional)', ph: '' },
+    recommend: { h: 'Recommend a reviewer', btn: 'Send recommendation', ml: 'Why they fit (optional)', ph: '' },
+    msg: { h: 'Message to the editor', btn: 'Send message', ml: 'Your message', ph: 'Write your message to the editor' }
+  };
+  var $ = function (id) { return document.getElementById(id); };
+  var S = { answer: 'choose', ref: '', email: '', first: '', last: '', title: '', journal: '' };
+  var busy = false;
+  var desktop = !!(window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches);
+
+  // Query and #fragment, decoded without turning "+" into a space (e-mail addresses can contain "+").
+  function parse(s) {
+    var o = {};
+    String(s || '').replace(/^[?#]/, '').split('&').forEach(function (pair) {
+      var i = pair.indexOf('='); if (i < 1) return;
+      try { o[pair.slice(0, i)] = decodeURIComponent(pair.slice(i + 1)); } catch (e) { /* skip a malformed part */ }
+    });
+    return o;
+  }
+  // Zoho test sends put FNAME / LNAME / EMAIL where the merge tags were; an unfilled tag still contains "$[".
+  function keep(v) { v = String(v || '').trim(); return !v || /^(guest|customer|fname|lname|email)$/i.test(v) || v.indexOf('$[') >= 0 ? '' : v; }
+  function withTimeout(ms) { var c = window.AbortController ? new AbortController() : null; if (c) setTimeout(function () { c.abort(); }, ms); return c ? c.signal : undefined; }
+  function checked(name) { var x = document.querySelector('input[name=' + name + ']:checked'); return x ? x.value : ''; }
+
+  function view(a) {
+    S.answer = a;
+    var v = V[a];
+    $('h').textContent = v.h;
+    $('choose').hidden = a !== 'choose';
+    $('f').hidden = a === 'choose';
+    if (a === 'choose') return;
+    $('accept-note').hidden = a !== 'accept';
+    $('reasons').hidden = a !== 'decline';
+    $('rec').hidden = a !== 'decline' && a !== 'recommend';
+    $('rec-toggle').hidden = a !== 'decline';
+    $('rec-intro').hidden = a !== 'recommend';
+    $('rec-fields').hidden = a === 'decline' ? $('rec-toggle').getAttribute('aria-expanded') !== 'true' : a !== 'recommend';
+    var typed = $('m').value.trim() !== '';
+    $('msg-toggle').hidden = a === 'msg';
+    $('msg-toggle').textContent = a === 'recommend' ? 'Add a note about them' : 'Add a message for the editor';
+    $('msg-field').hidden = a !== 'msg' && !typed && $('msg-toggle').getAttribute('aria-expanded') !== 'true';
+    $('ml').textContent = v.ml;
+    $('m').placeholder = v.ph;
+    $('go').textContent = v.btn;
+    var sw = $('sw'); sw.textContent = '';
+    var add = function (text) { sw.appendChild(document.createTextNode(text)); };
+    var btn = function (label, target) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'link'; b.textContent = label;
+      b.addEventListener('click', function () { clearErr(); view(target); $('h').scrollIntoView({ block: 'start' }); });
+      sw.appendChild(b);
+    };
+    if (a === 'accept') { add("Can't review it? "); btn('Decline the invitation', 'decline'); add(' or '); btn('recommend a reviewer', 'recommend'); add('.'); }
+    if (a === 'decline') { add('Can review it after all? '); btn('Accept the invitation', 'accept'); add('.'); }
+    if (a === 'recommend') { add('Would you review it yourself? '); btn('Accept the invitation', 'accept'); add('.'); }
+    if (a === 'msg') { add('Answering the invitation? '); btn('Accept', 'accept'); add(' or '); btn('decline', 'decline'); add('.'); }
+  }
+
+  function person(p) {
+    S.email = keep(p.e); S.first = keep(p.fn); S.last = keep(p.ln);
+    if (!EMAIL_RE.test(S.email)) S.email = '';
+    if (S.email) {
+      $('who-t').textContent = 'You are replying as ' + (S.last ? 'Dr. ' + S.last + ' (' + S.email + ').' : S.email + '.');
+      $('who').hidden = false;
+    } else {
+      $('me').hidden = false;
+    }
+  }
+  $('who-change').addEventListener('click', function () {
+    $('who').hidden = true; $('me').hidden = false; $('em').value = S.email; S.email = ''; $('em').focus();
+  });
+
+  function fill(m) {
+    if (!m || !m.ok) { $('title').hidden = true; return; }
+    S.title = m.title || ''; S.journal = m.journal || '';
+    if (S.title) $('title').textContent = S.title; else $('title').hidden = true;
+    if (S.journal) { $('jn').textContent = S.journal; document.title = 'Reviewer reply | ' + S.journal; }
+    if (m.cover && /^https:\/\//.test(m.cover)) { var c = $('cover'); c.alt = (S.journal || 'Journal') + ' cover'; c.src = m.cover; c.hidden = false; }
+    if (m.guidelines && SITE.test(m.guidelines)) { $('gl').href = m.guidelines; $('gl2').href = m.guidelines; }
+    if (m.jurl && SITE.test(m.jurl)) { $('jl').href = m.jurl; $('jl').textContent = 'Visit ' + (S.journal || 'the journal'); }
+  }
+
+  function err(text, field) {
+    var s = $('st'); s.textContent = text; s.hidden = false;
+    if (field) { field.setAttribute('aria-invalid', 'true'); field.focus(); }
+  }
+  function clearErr() {
+    $('st').hidden = true;
+    Array.prototype.forEach.call(document.querySelectorAll('[aria-invalid]'), function (x) { x.removeAttribute('aria-invalid'); });
+  }
+  function idle() { busy = false; $('go').disabled = false; $('go').textContent = V[S.answer].btn; }
+
+  function send() {
+    if (busy) return;
+    clearErr();
+    var a = S.answer, email = S.email || $('em').value.trim(), message = $('m').value.trim();
+    var recOpen = !$('rec').hidden && !$('rec-fields').hidden;
+    var rn = recOpen ? $('rn').value.trim() : '', re = recOpen ? $('re').value.trim() : '';
+    if (!EMAIL_RE.test(email)) return err('Please enter your e-mail so the editor can reply.', $('em'));
+    if (a === 'msg' && !message) return err('Please write a message first.', $('m'));
+    if (a === 'recommend' || rn || re) {
+      if (!rn) return err("Please add the reviewer's name.", $('rn'));
+      if (!EMAIL_RE.test(re)) return err("Please add the reviewer's e-mail.", $('re'));
+    }
+    var reason = a === 'decline' ? checked('reason') : '';
+    var payload = { ref: S.ref, answer: a, email: email, first: S.first, last: S.last, message: message,
+      reason: reason, askAgain: reason === 'time' ? checked('later') : '', recName: rn, recEmail: re };
+    busy = true; $('go').disabled = true; $('go').textContent = 'Sending…';
+    fetch(API, { method: 'POST', body: JSON.stringify(payload), credentials: 'omit', redirect: 'follow', signal: withTimeout(30000) })
+      .then(function (r) { return r.json(); })
+      .then(function (r) {
+        if (r && r.ok) return done(payload, r);
+        idle(); err((r && r.error) || 'Your answer was not sent. Please press the button again, or reply to the invitation e-mail.');
+      })
+      .catch(function () { idle(); err('Your answer was not sent. Check your connection and press the button again, or reply to the invitation e-mail.'); });
+  }
+
+  function done(p, r) {
+    idle();
+    var dr = S.last ? 'Dr. ' + S.last : '';
+    var lead = '', lead2 = '';
+    if (p.answer === 'accept') lead = 'You accepted the invitation.';
+    if (p.answer === 'decline') {
+      lead = { expertise: 'We will not invite you for this topic again.', coi: 'Thank you for telling us about the conflict of interest.',
+        concerns: 'Your note goes to the editor.' }[p.reason] || 'Your answer is recorded.';
+      if (p.reason === 'time') lead = r.until ? 'We will not send you another invitation before ' + r.until + '.' : 'Your answer is recorded.';
+      if (p.recName) lead2 = 'The editor will contact ' + p.recName + '.';
+    }
+    if (p.answer === 'recommend') lead = 'The editor will check the fit and contact ' + p.recName + '.';
+    if (p.answer === 'msg') lead = 'The editor will reply to ' + p.email + ' within 2 working days.';
+    $('dh').textContent = { accept: dr ? 'Thank you, ' + dr : 'Thank you', decline: 'Thank you for letting us know',
+      recommend: 'Thank you for the recommendation', msg: 'Message sent' }[p.answer];
+    $('dl').textContent = lead;
+    $('dl2').textContent = lead2; $('dl2').hidden = !lead2;
+    $('title2').textContent = S.title; $('title2').hidden = !S.title;
+    $('ref2').textContent = S.ref;
+    $('next').hidden = p.answer !== 'accept';
+    $('gl2').hidden = p.answer !== 'accept';
+    $('form-view').hidden = true;
+    var d = $('done'); d.hidden = false; d.classList.remove('pop'); void d.offsetWidth; d.classList.add('pop');
+    window.scrollTo(0, 0); $('dh').focus();
+  }
+
+  function broken() {
+    $('form-view').hidden = true; $('check').hidden = true; $('ms2').hidden = true;
+    $('dh').textContent = 'This link is incomplete';
+    $('dl').textContent = 'Please reply to the invitation e-mail instead. Your reply reaches the same editorial office.';
+    $('done').hidden = false;
+  }
+
+  $('msg-toggle').addEventListener('click', function () {
+    var open = this.getAttribute('aria-expanded') !== 'true';
+    this.setAttribute('aria-expanded', String(open)); $('msg-field').hidden = !open;
+    if (open) $('m').focus();
+  });
+  $('rec-toggle').addEventListener('click', function () {
+    var open = this.getAttribute('aria-expanded') !== 'true';
+    this.setAttribute('aria-expanded', String(open)); $('rec-fields').hidden = !open;
+    if (open) $('rn').focus();
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('input[name=reason]'), function (r) {
+    r.addEventListener('change', function () { $('later').hidden = checked('reason') !== 'time'; });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-go]'), function (b) {
+    b.addEventListener('click', function () { view(b.getAttribute('data-go')); });
+  });
+  $('m').addEventListener('keydown', function (e) {
+    if (desktop && e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); send(); }
+  });
+  $('f').addEventListener('submit', function (e) { e.preventDefault(); send(); });
+  if (!desktop) { $('hint').hidden = true; $('m').removeAttribute('aria-describedby'); }
+
+  var q = parse(location.search), h = parse(location.hash);
+  var p = { a: q.a, ref: q.ref, e: h.e || q.e, fn: h.fn || q.fn, ln: h.ln || q.ln };
+  S.ref = REF_RE.test(p.ref || '') ? p.ref : '';
+  if (!S.ref) return broken();
+  $('ref').textContent = S.ref;
+  person(p);
+  view(ALIAS[p.a] || 'choose');
+  fetch(API + '?api=manuscript&ref=' + encodeURIComponent(S.ref), { credentials: 'omit', redirect: 'follow', signal: withTimeout(20000) })
+    .then(function (r) { return r.json(); }).then(fill).catch(function () { $('title').hidden = true; });
+})();
+</script>
+</body>
+</html>
