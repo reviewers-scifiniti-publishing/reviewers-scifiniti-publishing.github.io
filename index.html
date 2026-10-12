@@ -95,7 +95,7 @@
 <body>
 <main class="wrap">
   <header class="mast">
-    <div class="coverbox"><img class="cover" id="cover" alt="" hidden></div>
+    <div class="coverbox" id="coverbox"><img class="cover" id="cover" alt="" hidden></div>
     <div>
       <img class="logo" src="https://www.scifiniti.com/frontend/img/logo-footer.png" alt="Scifiniti Publishing" width="120" height="34">
       <p class="kick">Reviewer reply</p>
@@ -277,11 +277,14 @@
   });
 
   function fill(m) {
-    if (!m || !m.ok) { $('title').hidden = true; return; }
+    if (!m || !m.ok) { $('title').hidden = true; $('coverbox').hidden = true; return; }
     S.title = m.title || ''; S.journal = m.journal || '';
     if (S.title) $('title').textContent = S.title; else $('title').hidden = true;
     if (S.journal) { $('jn').textContent = S.journal; document.title = 'Reviewer reply | ' + S.journal; }
-    if (m.cover && /^https:\/\//.test(m.cover)) { var c = $('cover'); c.alt = (S.journal || 'Journal') + ' cover'; c.src = m.cover; c.hidden = false; }
+    if (m.cover && /^https:\/\//.test(m.cover)) {
+      var c = $('cover'); c.alt = (S.journal || 'Journal') + ' cover';
+      c.onerror = function () { $('coverbox').hidden = true; }; c.src = m.cover; c.hidden = false;
+    } else { $('coverbox').hidden = true; }
     if (m.guidelines && SITE.test(m.guidelines)) { $('gl').href = m.guidelines; $('gl2').href = m.guidelines; }
     if (m.jurl && SITE.test(m.jurl)) { $('jl').href = m.jurl; $('jl').textContent = 'Visit ' + (S.journal || 'the journal'); }
   }
@@ -384,7 +387,7 @@
   person(p);
   view(ALIAS[p.a] || 'choose');
   fetch(API + '?api=manuscript&ref=' + encodeURIComponent(S.ref), { credentials: 'omit', redirect: 'follow', signal: withTimeout(20000) })
-    .then(function (r) { return r.json(); }).then(fill).catch(function () { $('title').hidden = true; });
+    .then(function (r) { return r.json(); }).then(fill).catch(function () { $('title').hidden = true; $('coverbox').hidden = true; });
 })();
 </script>
 </body>
