@@ -269,6 +269,7 @@
   function person(p) {
     S.email = keep(p.e); S.first = keep(p.fn); S.last = keep(p.ln);
     if (!EMAIL_RE.test(S.email)) S.email = '';
+    S.linkEmail = S.email;  // kept when the reviewer types another address, so the editor sees both
     if (S.email) {
       $('who-t').textContent = 'You are replying as ' + (S.last ? 'Dr. ' + S.last + ' (' + S.email + ').' : S.email + '.');
       $('who').hidden = false;
@@ -319,7 +320,7 @@
       if (!EMAIL_RE.test(re)) return err("Please add the reviewer's e-mail.", $('re'));
     }
     var reason = a === 'decline' ? checked('reason') : '';
-    var payload = { ref: S.ref, answer: a, email: email, first: S.first, last: S.last, message: message,
+    var payload = { ref: S.ref, answer: a, email: email, linkEmail: S.linkEmail || '', first: S.first, last: S.last, message: message,
       reason: reason, askAgain: reason === 'time' ? checked('later') : '', otherReason: reason === 'other' ? $('ot').value.trim().slice(0, 200) : '',
       recName: rn, recEmail: re };
     busy = true; $('go').disabled = true; $('go').textContent = 'Sending…';
