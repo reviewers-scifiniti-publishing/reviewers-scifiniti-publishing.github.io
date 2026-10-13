@@ -43,6 +43,8 @@
   .opt:has(input:focus-visible),.seg label:has(input:focus-visible){outline:3px solid var(--red);outline-offset:2px}
   .opt input:focus-visible,.seg input:focus-visible{outline:none}
   .later{margin:-2px 0 10px 46px}
+  .field.other{margin:-2px 0 10px 46px}
+  .fine{margin:0 0 16px;font-size:14px;color:var(--muted)}
   .later p{margin:0 0 6px;font-size:14px;color:var(--muted)}
   .seg{display:flex;flex-wrap:wrap;gap:8px}
   .seg label{position:relative;display:inline-flex;align-items:center;min-height:40px;padding:8px 14px;border:1px solid var(--field);border-radius:999px;background:#fff;font-size:14px;cursor:pointer}
@@ -126,7 +128,7 @@
       <fieldset id="reasons" hidden>
         <legend>Reason <span class="soft">(optional)</span></legend>
         <label class="opt"><input type="radio" name="reason" value="expertise"> Outside my expertise</label>
-        <label class="opt"><input type="radio" name="reason" value="time"> No time right now</label>
+        <label class="opt"><input type="radio" name="reason" value="time"> Unable to complete the review within the required timeframe</label>
         <div class="later" id="later" hidden>
           <p id="later-l">Ask me again in</p>
           <div class="seg" role="radiogroup" aria-labelledby="later-l">
@@ -138,6 +140,10 @@
         <label class="opt"><input type="radio" name="reason" value="coi"> Conflict of interest with the authors</label>
         <label class="opt"><input type="radio" name="reason" value="concerns"> Concerns about the manuscript</label>
         <label class="opt"><input type="radio" name="reason" value="other"> Other</label>
+        <div class="field other" id="other-field" hidden>
+          <label for="ot">Please tell us the reason <span class="soft">(optional)</span></label>
+          <input id="ot" maxlength="200" autocomplete="off">
+        </div>
       </fieldset>
 
       <div id="rec" hidden>
@@ -183,13 +189,14 @@
     <div id="next" hidden>
       <h2>What happens next</h2>
       <ol class="steps">
-        <li>The editor will contact you within 2 working days.</li>
-        <li>You will receive the formal invitation from our submission system (JAMS), sent from <strong>no-reply@jams.pub</strong>. Accept it there to open the full manuscript.</li>
+        <li>The editor will confirm the assignment within 2 working days.</li>
+        <li>Once confirmed, the manuscript will be assigned to you through our submission system (JAMS). You will receive an e-mail notification from <strong>no-reply@jams.pub</strong> with instructions to access the full manuscript.</li>
         <li>The review is due within 10–14 days of receiving the full manuscript.</li>
       </ol>
-      <p class="tip">Add <strong>no-reply@jams.pub</strong> to your contacts so the invitation reaches your inbox and not your spam folder.</p>
+      <p class="fine">The editor makes the final choice of reviewers. If the manuscript already has enough reviewers, or another reviewer's expertise is a closer match, you may not receive this manuscript. We will keep your details for future manuscripts in your field.</p>
+      <p class="tip">Add <strong>no-reply@jams.pub</strong> to your contacts so the notification reaches your inbox and not your spam folder.</p>
       <h2>In appreciation of your review</h2>
-      <p>A certificate of acknowledgment, and free English editing and graphical enhancement for any future article you publish with Scifiniti.</p>
+      <p>A certificate of acknowledgment, and free English editing and graphical enhancement for any future article you publish with Scifiniti Publishing.</p>
     </div>
     <p class="links"><a id="gl2" href="https://www.scifiniti.com/peer-review-process" hidden>Reviewer guidelines</a><a id="jl" href="https://www.scifiniti.com">Visit Scifiniti Publishing</a></p>
   </section>
@@ -256,9 +263,6 @@
       b.addEventListener('click', function () { clearErr(); view(target); $('h').scrollIntoView({ block: 'start' }); });
       sw.appendChild(b);
     };
-    if (a === 'accept') { add("Can't review it? "); btn('Decline the invitation', 'decline'); add(' or '); btn('recommend a reviewer', 'recommend'); add('.'); }
-    if (a === 'decline') { add('Can review it after all? '); btn('Accept the invitation', 'accept'); add('.'); }
-    if (a === 'recommend') { add('Would you review it yourself? '); btn('Accept the invitation', 'accept'); add('.'); }
     if (a === 'msg') { add('Answering the invitation? '); btn('Accept', 'accept'); add(' or '); btn('decline', 'decline'); add('.'); }
   }
 
@@ -270,6 +274,9 @@
       $('who').hidden = false;
     } else {
       $('me').hidden = false;
+      // Zoho test sends put the word EMAIL where the merge tag was; real sends fill in the reviewer's address
+      if (/^email$/i.test(String(p.e || '').trim()) || String(p.e || '').indexOf('$[') >= 0)
+        $('emh').textContent = 'This is a test e-mail, so your e-mail is not filled in. In the real invitation it is filled in automatically.';
     }
   }
   $('who-change').addEventListener('click', function () {
@@ -313,7 +320,8 @@
     }
     var reason = a === 'decline' ? checked('reason') : '';
     var payload = { ref: S.ref, answer: a, email: email, first: S.first, last: S.last, message: message,
-      reason: reason, askAgain: reason === 'time' ? checked('later') : '', recName: rn, recEmail: re };
+      reason: reason, askAgain: reason === 'time' ? checked('later') : '', otherReason: reason === 'other' ? $('ot').value.trim().slice(0, 200) : '',
+      recName: rn, recEmail: re };
     busy = true; $('go').disabled = true; $('go').textContent = 'Sending…';
     fetch(API, { method: 'POST', body: JSON.stringify(payload), credentials: 'omit', redirect: 'follow', signal: withTimeout(30000) })
       .then(function (r) { return r.json(); })
@@ -368,7 +376,7 @@
     if (open) $('rn').focus();
   });
   Array.prototype.forEach.call(document.querySelectorAll('input[name=reason]'), function (r) {
-    r.addEventListener('change', function () { $('later').hidden = checked('reason') !== 'time'; });
+    r.addEventListener('change', function () { $('later').hidden = checked('reason') !== 'time'; $('other-field').hidden = checked('reason') !== 'other'; });
   });
   Array.prototype.forEach.call(document.querySelectorAll('[data-go]'), function (b) {
     b.addEventListener('click', function () { view(b.getAttribute('data-go')); });
